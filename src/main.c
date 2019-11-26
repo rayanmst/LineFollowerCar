@@ -11,10 +11,14 @@
 #include <util/delay.h>
 
 #include "sonar.h"
+#include "avr_gpio.h"
 #include "avr_usart.h"
 
 int main(void) {
 	FILE *debug = get_usart_stream();
+
+	GPIO_B->DDR = 1<<PB5;
+
 
 	USART_Init(B9600);
 	sonar_init();
@@ -22,7 +26,10 @@ int main(void) {
 
 	while(1)
 	{
-		fprintf(debug, "Dist: %d\n\r", get_dist());
+		fprintf(debug, "Dist: %u\n\r", get_dist());
+		GPIO_SetBit(GPIO_B,PB5);
+		_delay_us(10);
+		GPIO_ClrBit(GPIO_B, PB5);
 		_delay_ms(1000);
 	}
 	return 0;

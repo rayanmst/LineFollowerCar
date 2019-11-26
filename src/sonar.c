@@ -19,32 +19,33 @@ volatile uint32_t dist = 0, inicio;
 volatile uint8_t estouros = 0;
 
 void sonar_init() {
-	SONAR_PORT->DDR |= SET(SONAR_ENABLE_PIN);
 	TIMER_1->TCCRA = 0;
 	TIMER_1->TCCRB = SET(ICES1) | SET(CS11);
 	TIMSK1 = SET(ICIE1) | SET(TOIE1);
 }
 
-uint64_t get_dist(){
-	if(dist<811) {
-		return dist;
-	}
-	else return 911;
+uint32_t get_dist(){
+	return dist/2;
 }
 
 ISR(TIMER1_CAPT_vect){
 	CPL_BIT(TIMER_1->TCCRB, ICES1);
-	if(TST_BIT(TIMER_1->TCCRB, ICES1)){
+	if(!TST_BIT(TIMER_1->TCCRB, ICES1)){
 		inicio = TIMER_1->ICR;
-	} else if(estouros == 0)
-		dist = (TIMER_1->ICR - inicio)/58;
-	else {
-		dist = (1<<16)/58 + (TIMER_1->ICR - inicio)/58;
 		estouros = 0;
+	} else if(estouros == 0)
+		dist = (TIMER_1->ICR - inicio);
+	else if(estouros == 1){
+		dist = (1<<16) + TIMER_1->ICR - inicio;
+		estouros = 0;
+	}
+	else {
+		estouros = 0;
+		dist = 65000;
 	}
 
 }
 
 ISR(TIMER1_OVF_vect){
-	estouros = 1;
+	estouros ++;
 }
