@@ -10,27 +10,26 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "sonar.h"
+#include "pwm.h"
 #include "avr_gpio.h"
-#include "avr_usart.h"
+#include "uart.h"
 
 int main(void) {
-	FILE *debug = get_usart_stream();
+	uint8_t data = 0;
 
 	GPIO_B->DDR = 1<<PB5;
 
-
-	USART_Init(B9600);
-	sonar_init();
+	USART_Init(B38400);
+	pwmInit();
 	sei();
 
 	while(1)
 	{
-		fprintf(debug, "Dist: %u\n\r", get_dist());
 		GPIO_SetBit(GPIO_B,PB5);
 		_delay_us(10);
 		GPIO_ClrBit(GPIO_B, PB5);
-		_delay_ms(1000);
+		//data = USART_rx();
+		move(200, data);
 	}
 	return 0;
 }

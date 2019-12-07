@@ -2,7 +2,7 @@
  * sonar.c
  *
  *  Created on: 12 de nov de 2019
- *      Author: rayan
+ *      Author: Rayan M. Steinbach
  */
 
 #include <stdio.h>

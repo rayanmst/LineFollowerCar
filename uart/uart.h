@@ -22,8 +22,9 @@
 #endif
 
 /* Baudrates */
-#define B9600  (F_CPU/16/9600-1)
-#define B57600  (F_CPU/16/57600-1)
+#define B9600    (F_CPU/16/9600-1)
+#define B38400   (F_CPU/16/38400-1)
+#define B57600   (F_CPU/16/57600-1)
 #define B115200  (F_CPU/16/115200-1)
 
 /* Registers structure definition */
