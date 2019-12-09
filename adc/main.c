@@ -9,7 +9,7 @@
 
 
 /**
-  * @brief  Configura hardware do timer0 para IRQ em overflow.
+  * @brief  Configura hardware do timer1 para IRQ em overflow.
   * @param	Nenhum
   *
   * @retval Nenhum.
