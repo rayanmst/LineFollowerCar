@@ -5,7 +5,11 @@
 #include "../lib/avr_timer.h"
 #include "../lib/bits.h"
 
+volatile uint16_t adc[2];
+volatile uint8_t aux_adc=0;
+
 void adc_init(){
+
 	/* Ref externa no pino AVCC com capacitor de 100n em VREF.
 	 * Habiltiação inicial no Canal 0 */
 	ADCS->AD_MUX = SET(REFS0);
@@ -24,4 +28,20 @@ void adc_init(){
 
 	/* Desabilita hardware Analógico de PC0,PC1 */
 	DIDR0 = SET(ADC0D) | SET(ADC1D);
+
+}
+
+
+ISR(ADC_vect)
+{
+    ADMUX &= 0xF0;
+    ADMUX |= aux_adc; //selecionando os canais
+    adc[aux_adc] = ADC;  //lê canal
+	aux_adc++;
+    aux_adc = aux_adc & 0x1; // contar no máximo até 1
+}
+
+
+uint16_t valor_adc(uint8_t i){
+	return adc[i];
 }
