@@ -1,9 +1,10 @@
-#ifndef ADC_H_
-#define ADC_H_
+#ifndef ADC_H
+#define ADC_H
 
-void adc_init(void);
+void adc_init();
 
 uint16_t valor_adc(uint8_t);
 
-#endif /* ADC_H_ */
+#endif /* ADC_H */
+
 
