@@ -4,9 +4,8 @@
 #include "../lib/avr_adc.h"
 #include "../lib/avr_timer.h"
 #include "../lib/bits.h"
-#include "../adc/adc.h"
+#include "adc.h"
 #include "../uart/uart.h"
-
 
 /**
   * @brief  Configura hardware do timer1 para IRQ em overflow.
@@ -26,7 +25,6 @@ void timer1_hardware_init(){
 
 int main(){
 
-	GPIO_B->DDR = 0xFF;
 	/* Obtem o stream de depuração */
 	FILE *debug = get_usart_stream();
 
@@ -43,10 +41,10 @@ int main(){
 
 		while(1){
 			uint8_t i =0;
-			fprintf(debug, "ADC0=%d\n", valor_adc(i));
+			fprintf(debug, "ADC0 = %d\n", valor_adc(i));
 			_delay_ms(500);
 			i++;
-			fprintf(debug, "ADC1=%d\n", valor_adc(i));
+			fprintf(debug, "ADC1 = %d\n", valor_adc(i));
 		    _delay_ms(500);
 		}
 }
@@ -54,3 +52,4 @@ int main(){
 ISR(TIMER1_OVF_vect){
 
 }
+
