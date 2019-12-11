@@ -5,6 +5,7 @@
 #include "../lib/avr_timer.h"
 #include "../lib/bits.h"
 #include "adc.h"
+#include "pwm.h"
 
 volatile uint16_t adc[2];
 volatile uint8_t aux_adc=0;
