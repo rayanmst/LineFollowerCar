@@ -25,6 +25,7 @@ int main(void) {
 
 	while(1)
 	{
+		test_bat();
 		GPIO_SetBit(GPIO_B,PB5);
 		_delay_us(10);
 		GPIO_ClrBit(GPIO_B,PB5);
