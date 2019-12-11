@@ -20,15 +20,15 @@ int main(void) {
 	GPIO_B->DDR = 1<<PB5;
 
 	USART_Init(B38400);
-	pwmInit();
+	carInit();
 	sei();
 
 	while(1)
 	{
 		GPIO_SetBit(GPIO_B,PB5);
 		_delay_us(10);
-		GPIO_ClrBit(GPIO_B, PB5);
-		//data = USART_rx();
+		GPIO_ClrBit(GPIO_B,PB5);
+		data = USART_rx();
 		move(200, data);
 	}
 	return 0;

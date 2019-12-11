@@ -14,7 +14,7 @@
   *
   * @retval Nenhum.
   */
-void pwmInit();
+void carInit();
 
 /**
   * @brief  Move o carro para frente.

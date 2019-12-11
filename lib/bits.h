@@ -12,6 +12,7 @@
 #define BITS_H_
 
 #define SET(bit)		(1 << bit)
+#define CLEAR(bit)		(0 << bit)
 #define	SET_BIT(y,bit)	(y|=(1<<bit))
 #define	CLR_BIT(y,bit)	(y&=~(1<<bit))
 #define CPL_BIT(y,bit) 	(y^=(1<<bit))
