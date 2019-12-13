@@ -7,4 +7,4 @@
 
 #### Funcionamento 
 
-Quando a comunicação por bluetooth não é conectada, o carrinho funciona como um seguidor de linha.
+O carrinho faz a movimentação quando conectado por bluetooth, caso nenhum comando seja acionado o carrinho funciona como seguidor de linha.
