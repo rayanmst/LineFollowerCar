@@ -39,7 +39,7 @@ ISR(ADC_vect)
     ADMUX &= 0xF0;
     ADMUX |= aux_adc; //selecionando os canais
     adc[aux_adc] = ADC;  //lê canal
-	aux_adc++;
+    aux_adc++;
     aux_adc = aux_adc & 0x1; // contar no máximo até 1
 }
 
