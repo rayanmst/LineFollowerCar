@@ -47,8 +47,3 @@ void test_bat() {
 	if( adc[1] == 478 || adc[0] - adc[1] == 478 )
 		itsTimeToStop();
 }
-
-
-uint16_t valor_adc(uint8_t i){
-	return adc[i];
-}
